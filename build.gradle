@@ -17,8 +17,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation ('org.springframework.boot:spring-boot-starter-web'){
+		// 종속성 제외 추가
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+	}
+	// undertow 추가
+	implementation 'org.springframework.boot:spring-boot-starter-undertow'
+	
 	implementation 'org.springframework.session:spring-session-data-redis'
+	
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.1'
+	
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
